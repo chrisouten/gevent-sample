@@ -40,6 +40,13 @@ Getting the sha-1 of the body content from google.com
     $ curl -s 'http://127.0.0.1:8000/google-body'
     {"response": "b86941fa05cc1b5f2bad1076dcdba8df1c520a87"}
     
+Storing and retrieving a value form a reddis db
+
+    $ curl -d 'value=ilovereddis' 'http://127.0.0.1:8000/store'
+    {"response": "ilovereddis"}
+    $ curl 'http://127.0.0.1:8080/store'
+    {"response": "ilovereddis"}
+    
     
     
     
