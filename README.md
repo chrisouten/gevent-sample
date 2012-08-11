@@ -16,6 +16,9 @@ If you have issues installing the requirements here are some libraries you might
     libxslt1-dev
     libevent-dev
     
+This also requires a redis backend for two of the functions.
+Redis can be downloaded from their website.  [http://redis.io/download](http://redis.io/download)
+    
 
 Running the Server
 =============
