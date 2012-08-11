@@ -23,7 +23,7 @@ Functions
 
 Getting a fibonacci number
 
-    $ curl -s 'http://127.0.0.1:8080/fib/13'
+    $ curl -s 'http://127.0.0.1:8000/fib/13'
     {"response":233}
     
     
