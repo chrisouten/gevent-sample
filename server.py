@@ -7,13 +7,22 @@ from gevent.pywsgi import WSGIServer
 from lxml import html
 import redis
 
+#Setting up our simple Flask server
+#  Adding a redis db to it.  I'm pretty sure there is
+#  a better way to do this, but I don't have a lot of
+#  experience with Flask.
 app = Flask(__name__)
 app.debug = True
 app.redis_db = redis.StrictRedis(host='localhost', port=6379, db=0)
 
+#Our special key for the redis db store
 REDIS_SV_KEY = 'special_value'
 
 def get_fibonacci(val):
+    '''
+    Simple fibonacci function
+    Takes a positive integer and returns the value
+    '''
     if val in [0,1]:
         return val
     else:
@@ -26,7 +35,10 @@ def fibonacci(val):
     
 @app.route('/google-body')
 def google_body():
+    # Get the html data using urllib2
     html_data = urllib2.urlopen('http://www.google.com')
+    # Using lxml we get the body element's text content, then encode that
+    # using the charset value from the headers
     body_data = html.parse(html_data).xpath('body')[0].text_content().encode(html_data.headers.getparam('charset'))
     return json.dumps({'response':hashlib.sha1(body_data).hexdigest()})
     
