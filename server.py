@@ -27,10 +27,16 @@ def get_fibonacci(val):
         return val
     else:
         return get_fibonacci(val-1) + get_fibonacci(val-2)
+        
+def faster_fibonacci(val):
+    a,b = 1,1
+    for x in xrange(val-1):
+        a,b = b, a + b
+    return a
 
 @app.route('/fib/<int:val>')
 def fibonacci(val):
-    fib_n = get_fibonacci(val)
+    fib_n = faster_fibonacci(val)
     return json.dumps({"response": fib_n})
     
 @app.route('/google-body')
